@@ -94,6 +94,7 @@ control "super-linter-installed-commands" do
     { linter_name: "asl-validator"},
     { linter_name: "bash-exec", expected_exit_status: 1}, # expect a return code = 1 because this linter doesn't support a "get linter version" command
     { linter_name: "black"},
+    { linter_name: "clang-format"},
     { linter_name: "cfn-lint"},
     { linter_name: "checkstyle", version_command: "java -jar /usr/bin/checkstyle --version"},
     { linter_name: "chktex"},
@@ -114,7 +115,6 @@ control "super-linter-installed-commands" do
     { linter_name: "htmlhint"},
     { linter_name: "isort"},
     { linter_name: "jscpd"},
-    { linter_name: "jsonlint", expected_exit_status: 1, expected_stdout_regex: /\d+\.\d+\.\d+/},
     { linter_name: "ktlint"},
     { linter_name: "kubeval"},
     { linter_name: "lua", version_option: "-v"},
@@ -132,7 +132,7 @@ control "super-linter-installed-commands" do
     { linter_name: "R", version_command: "R --slave -e \"r_ver <- R.Version()\\$version.string; \
             lintr_ver <- packageVersion('lintr'); \
             glue::glue('lintr { lintr_ver } on { r_ver }')\""},
-    { linter_name: "raku"},
+    { linter_name: "raku", version_command: "raku --version | strings -n 8"},
     { linter_name: "rubocop"},
     { linter_name: "rustfmt"},
     { linter_name: "shellcheck"},
@@ -303,6 +303,7 @@ control "super-linter-installed-npm-packages" do
     "eslint-config-airbnb",
     "eslint-config-prettier",
     "eslint-plugin-jest",
+    "eslint-plugin-json",
     "eslint-plugin-jsonc",
     "eslint-plugin-jsx-a11y",
     "eslint-plugin-prettier",
@@ -311,7 +312,6 @@ control "super-linter-installed-npm-packages" do
     #"immer",
     #"ini",
     "jscpd",
-    "jsonlint",
     #"lodash",
     "markdownlint-cli",
     #"node-fetch",
